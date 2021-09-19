@@ -5,6 +5,7 @@ const _ = require('lodash')
 const yargs = require('yargs')
 
 const notes = require('./notes')
+const { title } = require('process')
 
 // var res = notes.addNote()
 // console.log(res)
@@ -24,13 +25,13 @@ if(command === "add"){
     notes.addNote(argv.title, argv.body)
 }
 else if(command === "list"){
-    console.log("listing all notes")
+    notes.getAll()
 }
 else if(command === "read"){
-    console.log("reading note")
+    notes.getNote(argv.title)
 }
 else if(command === "remove"){
-    console.log("removing note")
+    notes.remove(argv.title)
 }else{
     console.log("Command not found")
 }
