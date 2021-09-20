@@ -1,11 +1,11 @@
-console.log("Starting app...")
-const fs = require('fs')
-const os = require('os')
-const _ = require('lodash')
-const yargs = require('yargs')
+console.log("Starting app...");
+const fs = require("fs");
+const os = require("os");
+const _ = require("lodash");
+const yargs = require("yargs");
 
-const notes = require('./notes')
-const { title } = require('process')
+const notes = require("./notes");
+const { title } = require("process");
 
 // var res = notes.addNote()
 // console.log(res)
@@ -14,26 +14,21 @@ const { title } = require('process')
 // const addition = add(44,7)
 // console.log(addition)
 
-var argv = yargs.argv
-var command = process.argv[2]
-console.log(command)
-console.log('process', process.argv)
-console.log("yargs", argv)
+var argv = yargs.argv;
+var command = argv._[0];
 
+console.log("yargs", argv);
 
-if(command === "add"){
-    notes.addNote(argv.title, argv.body)
-}
-else if(command === "list"){
-    notes.getAll()
-}
-else if(command === "read"){
-    notes.getNote(argv.title)
-}
-else if(command === "remove"){
-    notes.remove(argv.title)
-}else{
-    console.log("Command not found")
+if (command === "add") {
+	notes.addNote(argv.title, argv.body);
+} else if (command === "list") {
+	notes.getAll();
+} else if (command === "read") {
+	notes.getNote(argv.title);
+} else if (command === "remove") {
+	notes.removeNote(argv.title);
+} else {
+	console.log("Command not found");
 }
 
 // var user = os.userInfo()
