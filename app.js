@@ -1,4 +1,3 @@
-console.log("Starting app...");
 const fs = require("fs");
 const os = require("os");
 const _ = require("lodash");
@@ -14,10 +13,15 @@ const { title } = require("process");
 // const addition = add(44,7)
 // console.log(addition)
 
-var argv = yargs.argv;
+var argv = yargs
+	.command("add", "Add a new note", {
+		title: {
+			describe: "Title of node",
+			demand: true,
+		},
+	})
+	.help().argv;
 var command = argv._[0];
-
-console.log("yargs", argv);
 
 if (command === "add") {
 	var note = notes.addNote(argv.title, argv.body);
@@ -30,7 +34,13 @@ if (command === "add") {
 		consoele.log("Note title Taken");
 	}
 } else if (command === "list") {
-	notes.getAll();
+	const allNotes = notes.getAll();
+
+	console.log(`Printing ${allNotes.length} note(s)`);
+	allNotes.forEach((note) => {
+		console.log(`Title: ${note.title}`);
+		console.log(`Body: ${note.body}`);
+	});
 } else if (command === "read") {
 	console.log(`Searching for note title ${argv.title}`);
 	const note = notes.getNote(argv.title);
