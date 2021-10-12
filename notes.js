@@ -41,7 +41,6 @@ const removeNote = (title) => {
 	const notes = fetchNotes();
 	const newNotes = notes.filter((note) => note.title !== title);
 	saveNotes(newNotes);
-
 	return notes.length !== newNotes;
 };
 
